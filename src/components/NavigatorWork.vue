@@ -3,7 +3,7 @@
     <div class="text">{{ section }}</div>
     <a :href="previous_url">
       <img
-        src="@/assets/home/logo_inicial.png"
+        src="@/assets/home/gif_menu.gif"
         height="80"
         width="80"
        alt=""/>
