@@ -1,15 +1,20 @@
 <template>
-  <div class="principal" @click="to_index()">
-    <img class="image" v-show="seen" alt="Logo Inicial" src="../assets/home/gabi.gif" />
-    <a href="/index">
-      <img
-        @mouseover="activateLetters"
-        @mouseleave="activateLetters"
-        alt="Logo Inicial"
-        src="../assets/home/logo_inicial.png"
-      />
-    </a>
-    <img class="image" v-show="seen" alt="Logo inicial" src="../assets/home/ladra.gif" />
+  <div class="principal" >
+    <img
+      class="image"
+      v-show="seen"
+      alt="Logo Inicial"
+      src="../assets/home/gabi.gif"
+    />
+    <div @mouseover="activateLetters" @mouseleave="activateLetters" @click="to_index()">
+      <img alt="Logo Inicial" src="../assets/home/gif_menu.gif" width="533px" height="427px" />
+    </div>
+    <img
+      class="image"
+      v-show="seen"
+      alt="Logo inicial"
+      src="../assets/home/ladra.gif"
+    />
   </div>
 </template>
 
@@ -25,15 +30,12 @@ export default {
       seen: false,
     };
   },
-  mounted: function() {
-    console.log(this.$refs.initialVideo);
-  },
   methods: {
     activateLetters() {
       this.seen = !this.seen;
     },
     to_index() {
-      this.$router.push("/path");
+      this.$router.push("/index");
     },
   },
 };
@@ -46,7 +48,7 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.image{
-  max-width: 640px;
+.image {
+  max-width: 533px;
 }
 </style>

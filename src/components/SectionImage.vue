@@ -1,5 +1,5 @@
 <template>
-  <div id="section" @mouseover="overImage" @mouseleave="leaveImage">
+  <a :href="url" id="section" @mouseover="overImage" @mouseleave="leaveImage">
     <img
       :src="resolve_img_url(image_)"
       :alt="alt"
@@ -7,7 +7,7 @@
       width="235px"
     />
     <div class="text" v-show="seen">{{ text }}</div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -18,6 +18,7 @@ export default {
     alt: String,
     leave_image: String,
     over_image: String,
+    url: String,
   },
   data() {
     return {
@@ -62,5 +63,6 @@ export default {
 
 #section {
   margin-right: 1px;
+  text-decoration: none;
 }
 </style>

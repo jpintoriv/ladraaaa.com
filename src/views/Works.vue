@@ -5,26 +5,20 @@
       previous_section="Home"
       previous_url="/index"
     />
-    <draggable v-model="works">
-      <div v-for="(list, i) in works" :key="i" class="item">
-        <div>
-        <h3>
-        {{list}}
-        </h3>
-        <img :src=resolve_img_url(list) height="235px" width="235px" alt="hola" />
-        </div>
-      </div>
-    </draggable>
+    <DraggableDiv image_="encarnacao.jpg" alt="hola" />
+    <DraggableDiv image_="pendrive.jpg" alt="hola" />
+    <DraggableDiv image_="riso.jpg" alt="hola" />
+    <DraggableDiv image_="simulacro_obra.jpg" alt="hola" />
   </div>
 </template>
 
 <script>
 import NavigatorWork from "@/components/NavigatorWork.vue";
-import draggable from "vuedraggable";
+import DraggableDiv from "@/components/DraggableDiv";
 
 export default {
   name: "Works",
-  components: { NavigatorWork, draggable },
+  components: { NavigatorWork, DraggableDiv },
   data() {
     return {
       works: ["encarnacao.jpg", "pendrive.jpg", "riso.jpg", "simulacro_obra.jpg"],

@@ -5,29 +5,34 @@
       alt="Obra"
       leave_image="obra_leave.jpg"
       over_image="obra_over.gif"
+      url="/works"
     />
     <SectionImage
       text="DIRECCIÓN DE ARTE"
       alt="Direccion de arte"
       leave_image="arte_leave.jpg"
       over_image="arte_over.gif"
+      url="#"
     />
     <SectionImage
       text="ABOUT + STATEMENT"
       alt="About"
       leave_image="about_leave.jpg"
       over_image="about_over.gif"
+      url="#"
     />
     <SectionImage
       text="CONTACTO"
       alt="contacto"
       leave_image="contacto_leave.jpg"
       over_image="contacto_over.gif"
+      url="#"
     />
     <SectionImage
       alt="Random"
       leave_image="random_leave.jpg"
       over_image="random_over.gif"
+      url="#"
     />
   </div>
 </template>
