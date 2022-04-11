@@ -1,39 +1,44 @@
 <template>
-  <div class="sections">
-    <SectionImage
-      text="OBRA"
-      alt="Obra"
-      leave_image="obra_leave.jpg"
-      over_image="obra_over.gif"
-      url="/works"
-    />
-    <SectionImage
-      text="DIRECCIÓN DE ARTE"
-      alt="Direccion de arte"
-      leave_image="arte_leave.jpg"
-      over_image="arte_over.gif"
-      url="#"
-    />
-    <SectionImage
-      text="ABOUT + STATEMENT"
-      alt="About"
-      leave_image="about_leave.jpg"
-      over_image="about_over.gif"
-      url="#"
-    />
-    <SectionImage
-      text="CONTACTO"
-      alt="contacto"
-      leave_image="contacto_leave.jpg"
-      over_image="contacto_over.gif"
-      url="#"
-    />
-    <SectionImage
-      alt="Random"
-      leave_image="random_leave.jpg"
-      over_image="random_over.gif"
-      url="#"
-    />
+  <div>
+    <video id="background-video" autoplay loop muted poster="../assets/home/gif_menu.gif">
+      <source src="../assets/index/background.mp4" type="video/mp4">
+    </video>
+    <div class="sections">
+      <SectionImage
+        text="OBRA"
+        alt="Obra"
+        leave_image="obra_leave.jpg"
+        over_image="obra_over.gif"
+        url="/works"
+      />
+      <SectionImage
+        text="DIRECCIÓN DE ARTE"
+        alt="Direccion de arte"
+        leave_image="arte_leave.jpg"
+        over_image="arte_over.gif"
+        url="#"
+      />
+      <SectionImage
+        text="ABOUT + STATEMENT"
+        alt="About"
+        leave_image="about_leave.jpg"
+        over_image="about_over.gif"
+        url="#"
+      />
+      <SectionImage
+        text="CONTACTO"
+        alt="contacto"
+        leave_image="contacto_leave.jpg"
+        over_image="contacto_over.gif"
+        url="#"
+      />
+      <SectionImage
+        alt="Random"
+        leave_image="random_leave.jpg"
+        over_image="random_over.gif"
+        url="#"
+      />
+    </div>
   </div>
 </template>
 
@@ -58,5 +63,17 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+#background-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
 }
 </style>
