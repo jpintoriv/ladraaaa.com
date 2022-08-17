@@ -28,6 +28,7 @@ export default {
 #nav {
   display: flex;
   justify-content: space-between;
+  z-index: 99;
 }
 
 .text {
@@ -44,6 +45,7 @@ export default {
   position: relative;
   top: -50px;
   text-align: center;
+
 }
 
 #section {

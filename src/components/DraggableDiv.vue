@@ -4,7 +4,7 @@
       @mousedown="dragMouseDown"
       :src="resolve_img_url(image_)"
       :alt="alt"
-      height="300px"
+      width="500px"
     />
   </div>
 </template>
@@ -15,6 +15,7 @@ export default {
   props: {
     alt: String,
     image_: String,
+    index_: Number,
   },
   data: function () {
     return {
@@ -27,11 +28,18 @@ export default {
     };
   },
   mounted: function(){
-    let top = Math.floor(Math.random()*(1000-150+1)+150);
+
+    let _sign = Math.random() < 0.5 ? -1 : 1;
+    let random_top = Math.floor(Math.random()*(120-50)+50) * _sign;
+    let top = 200 + (400 * (Math.trunc(this.index_/3))) + random_top;
     this.$refs.draggableContainer.style.top = top+"px";
 
-    let left = Math.floor(Math.random()*(1080+1)+50);
+    _sign = Math.random() < 0.5 ? -1 : 1;
+
+    let random_left = Math.floor(Math.random()*(120-50)+50) * _sign;
+    let left = 200 + (((window.innerWidth)/3 -200 )* (this.index_%3)) + random_left;
     this.$refs.draggableContainer.style.left = left+"px";
+
   },
   methods: {
     dragMouseDown: function (event) {
