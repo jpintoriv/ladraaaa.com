@@ -19,15 +19,15 @@
         url="#"
       />
       <SectionImage
-        text="ABOUT + STATEMENT"
+        text="ABOUT"
         alt="About"
         leave_image="about_leave.jpg"
         over_image="about_over.gif"
         url="#"
       />
       <SectionImage
-        text="CONTACTO"
-        alt="contacto"
+        text="PHOTO PHONE"
+        alt="photo-phone"
         leave_image="contacto_leave.jpg"
         over_image="contacto_over.gif"
         url="#"
