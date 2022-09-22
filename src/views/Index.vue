@@ -30,7 +30,7 @@
         alt="photo-phone"
         leave_image="contacto_leave.jpg"
         over_image="contacto_over.gif"
-        url="#"
+        url="/photophone"
       />
       <SectionImage
         alt="Random"
