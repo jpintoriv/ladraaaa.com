@@ -16,7 +16,7 @@
         alt="Direccion de arte"
         leave_image="arte_leave.jpg"
         over_image="arte_over.gif"
-        url="#"
+        url="/artdirection"
       />
       <SectionImage
         text="ABOUT"
