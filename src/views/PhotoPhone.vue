@@ -7,18 +7,63 @@
         previous_url="/index"
       />
     </div>
-    <b-container class="bv-example-row">
-      <b-row>
-        <b-col>1 of 2</b-col>
-        <b-col>2 of 2</b-col>
-      </b-row>
-
-      <b-row>
-        <b-col>1 of 3</b-col>
-        <b-col>2 of 3</b-col>
-        <b-col>3 of 3</b-col>
-      </b-row>
-    </b-container>
+    <div class="content">
+      <div class="information">
+        <div id="principal-text-div">
+          <p>
+            ﾟ･*:.｡*:ﾟ･♡<br />
+            .｡.:*✧ galeria sin razón<br />
+            no reason gallery ✧*:.｡.<br />
+            ♡･ﾟ:*｡.:*･ﾟ
+          </p>
+        </div>
+        <div>
+          <p id="secondary-text-div">
+            photo phone<br />
+            2018-2022
+          </p>
+        </div>
+        <div id="image-information">
+          <img src="@/assets/photophone/cachorro.gif" width="230" alt="" />
+        </div>
+      </div>
+      <div class="photos-left">
+        <img
+          v-for="(item, index) in images_1"
+          :src="resolve_img_url(item)"
+          height="384px"
+          alt="index"
+          :key="index"
+        />
+      </div>
+      <div class="photos-right">
+        <img
+          v-for="(item, index) in images_2"
+          :src="resolve_img_url(item)"
+          height="384px"
+          alt="index"
+          :key="index"
+        />
+      </div>
+      <div class="photos-left">
+        <img
+          v-for="(item, index) in images_3"
+          :src="resolve_img_url(item)"
+          height="384px"
+          alt="index"
+          :key="index"
+        />
+      </div>
+      <div class="photos-right">
+        <img
+          v-for="(item, index) in images_4"
+          :src="resolve_img_url(item)"
+          height="384px"
+          alt="index"
+          :key="index"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,27 +75,34 @@ export default {
   components: { NavigatorWork },
   data: function () {
     return {
-      works: [
-        { name: "encarnacao.jpg" },
-        { name: "pendrive.jpg" },
-        { name: "riso.jpg" },
-        { name: "simulacro_obra.jpg" },
+      images_1: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],
+      images_2: [
+        "8.jpg",
+        "9.jpg",
+        "10.jpg",
+        "11.jpg",
+        "12.jpg",
+        "13.jpg",
+        "14.jpg",
       ],
-      carousel: [
-        { name: "expogabi_1.jpg" },
-        { name: "expogabi_2.jpg" },
-        { name: "expogabi_3.jpg" },
-        { name: "expogabi_4.jpg" },
-        { name: "expogabi_5.jpg" },
+      images_3: [
+        "15.jpg",
+        "16.jpg",
+        "17.jpg",
+        "18.jpg",
+        "19.jpg",
+        "20.jpg",
+        "21.jpg",
       ],
-      image: {
-        visible: false,
-        name: "encarnacao.jpg",
-        description: "lorem ipsum",
-      },
-      top_image: "",
-      right_image: "expogabi_1.jpg",
-      actual_image_index: 0,
+      images_4: [
+        "22.jpg",
+        "23.jpg",
+        "24.jpg",
+        "25.jpg",
+        "26.jpg",
+        "27.jpg",
+        "28.jpg",
+      ],
     };
   },
   methods: {
@@ -59,7 +111,7 @@ export default {
         return "";
       }
       let images = require.context(
-        "../assets/works/",
+        "../assets/photophone/images/",
         false,
         /\.png$|\.jpg$|\.gif/
       );
@@ -77,5 +129,49 @@ body {
   margin-top: 66px;
   margin-left: 33px;
   margin-right: 33px;
+}
+p {
+  color: #03ff00;
+  font-family: "Paprika", regular, serif;
+}
+img{
+  margin-bottom: 10px;
+}
+.content {
+  display: flex;
+  align-items: stretch;
+}
+
+.information {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#principal-text-div{
+  max-width: 200px;
+  margin-top: 200px;
+  text-align: left;
+  font-size: 14px;
+}
+
+#secondary-text-div{
+  margin-top: 20px;
+  font-size: 9px;
+  text-align: left;
+}
+
+#image-information{
+  margin-top: 100px;
+}
+
+.photos-left {
+  width: 290px;
+  margin-left: 70px;
+}
+.photos-right {
+  width: 290px;
+  margin-left: 15px;
 }
 </style>
