@@ -8,12 +8,21 @@
       />
     </div>
     <div class="content">
-    <div id="left-information">
+      <div id="left-information">
+        <img src="@/assets/about/GABI_FOTOBIO.jpg" width="625" alt="" />
+        <div id="contact">
+          <a href="mailto:gabriela.claveria@gmail.com">gabriela.claveria@gmail.com</a>
+          <br>
+          <a href="https://www.instagram.com/ladraaaaa">@ladraaaaa</a>
+          <br>
+          <a href="https://www.soundcloud.com/ladraaa">soundcloud/ladraaa</a>
+        </div>
+        <div id="info-photo">
+          Foto por Gonzalo Garcés
+        </div>
+      </div>
 
-    </div>
-    <div id="right-information">
-
-    </div>
+      <div id="right-information">hola</div>
     </div>
   </div>
 </template>
@@ -80,17 +89,42 @@ body {
   margin-top: 66px;
   margin-left: 33px;
   margin-right: 33px;
-}
-p {
-  color: #03ff00;
   font-family: "Paprika", regular, serif;
 }
-img{
-  margin-bottom: 10px;
+a {
+  color: #03ff00;
+  text-decoration: none;
 }
+
 .content {
   display: flex;
   align-items: stretch;
 }
 
+#left-information {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 70px;
+}
+
+#contact{
+  margin-top: 38px;
+  color: #03ff00;
+  font-size: 18px;
+  text-align: left;
+}
+
+#info-photo{
+  margin-top: 20px;
+  width: 625px;
+  color: #03ff00;
+  font-size: 10px;
+  text-align: center;
+}
+
+#right-information {
+  width: 900px;
+}
 </style>
