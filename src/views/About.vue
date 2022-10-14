@@ -2,7 +2,7 @@
   <div>
     <div id="works" ref="works">
       <navigator-work
-        section="About"
+        section="ABOUT"
         previous_section="Menú"
         previous_url="/index"
       />
@@ -22,7 +22,30 @@
         </div>
       </div>
 
-      <div id="right-information">hola</div>
+      <div id="right-information">
+        <div id="language-text">
+          ESP / ENG
+        </div>
+        <div class="title-text">
+          BIO***
+        </div>
+        <div class="p-text">
+          Gabriela Clavería ✦ (Chile, 1989) es diseñadora teatral, directora de arte y artista transdisciplinar en constante experimentación y cambio. Ha trabajado como diseñadora y técnico en compañías de teatro, como directora de arte en fotografía y videos, como tatuadora y DJ, pudiendo mezclar así la fotografía, video, teatro, música y moda. El trabajo colaborativo ha sido desde siempre una escuela para su trabajo y formación como artista y persona.
+          <br>
+          Teniendo como soportes creativos imágenes fijas, en movimiento, escultura e instalación, su constante indagación en soportes y formatos le ha permitido publicar y exponer en diversas publicaciones, fanzines, en muestras colectivas e individuales. Guiada por las emociones, lo sensible, la liviandad y el peso de la fluidez, su trabajo pretende una conexión con la naturaleza y la intuición, desestigmatizando lo vulnerable y la inconsistencia del cambio. En el año 2017 comenzó a indagar en la acumulación de desechos y basura como objetos creativos que le consuelan y le permiten resignificar una memoria cotidiana olvidada y dejada al margen, acercándose a una otredad encontrada en el espacio público. A comienzos del 2020 expuso El agua se va por la salida (BAJ Valparaíso, Chile, 2020), trabajo con el que logró materializar ideas entorno a la liberación de las emociones, encontrando la fluidez como concepto que cruza toda su obra y vida personal.
+          <br>
+          Actualmente reside en Lisboa, Portugal, donde ha logrado indagar en la performatividad de la materia misma y en acciones performativas, mezclando música en fiestas y otras acciones bajo el seudónimo de LADRA.
+        </div>
+        <div class="title-text">
+          STATEMENT
+        </div>
+        <div class="p-text">
+          Guiada por las emociones, lo sensible, la liviandad y el peso de la fluidez, experimento con lo que voy encontrando (me); basuras, rocas, hojas, agua, naturaleza e intuición. Veo mi trabajo como ejercicios de materialización de sentimientos, como un alivio que desestigmatice lo vulnerable y la inconsistencia del cambio. Trabajo con los deshechos como un acto de dar nuevas oportunidades y de encontrar belleza en lo dejado de lado.
+          <br>
+          Trabajo creando texturas y atmósferas como forma de encarnación y de devenir.
+        </div>
+
+      </div>
     </div>
   </div>
 </template>
@@ -102,7 +125,7 @@ a {
 }
 
 #left-information {
-  width: 800px;
+  width: 760px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -126,5 +149,32 @@ a {
 
 #right-information {
   width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
+
+#language-text{
+  color: #03ff00;
+  margin-bottom: 35px;
+  font-size: 17px;
+}
+
+.title-text{
+  color: #03ff00;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.p-text{
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 13px;
+}
+
+br {
+   display: block;
+   margin: 10px 0;
+}
+
 </style>

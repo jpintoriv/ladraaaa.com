@@ -153,12 +153,12 @@ img{
   max-width: 200px;
   margin-top: 200px;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #secondary-text-div{
   margin-top: 20px;
-  font-size: 9px;
+  font-size: 10px;
   text-align: left;
 }
 

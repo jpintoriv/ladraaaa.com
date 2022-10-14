@@ -31,6 +31,10 @@ export default {
   z-index: 99;
 }
 
+a {
+  text-decoration: none;
+}
+
 .text {
   color: #03ff00;
   font-size: 24px;
@@ -43,7 +47,7 @@ export default {
   font-size: 18px;
   width: 80px;
   position: relative;
-  top: -50px;
+  top: -58px;
   text-align: center;
 
 }

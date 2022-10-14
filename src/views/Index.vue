@@ -23,7 +23,7 @@
         alt="About"
         leave_image="about_leave.jpg"
         over_image="about_over.gif"
-        url="/about"
+        url="/ABOUT"
       />
       <SectionImage
         text="PHOTO PHONE"
