@@ -34,6 +34,7 @@
           height="384px"
           alt="index"
           :key="index"
+          @click="showGallery(index, images_1)"
         />
       </div>
       <div class="photos-right">
@@ -43,6 +44,7 @@
           height="384px"
           alt="index"
           :key="index"
+          @click="showGallery(index, images_2)"
         />
       </div>
       <div class="photos-left">
@@ -52,6 +54,7 @@
           height="384px"
           alt="index"
           :key="index"
+          @click="showGallery(index, images_3)"
         />
       </div>
       <div class="photos-right">
@@ -61,7 +64,24 @@
           height="384px"
           alt="index"
           :key="index"
+          @click="showGallery(index, images_4)"
         />
+      </div>
+    </div>
+    <div v-if="image.visible">
+      <div class="background-gallery" @click="hideGallery" />
+      <div id="left_image" @click="leftImage">
+
+      </div>
+      <img
+        id="image"
+        :src="resolve_img_url(image.name)"
+        :alt="image.description"
+        height="600px"
+      />
+      <div id="right_image" @click="rightImage">
+      </div>
+      <div id="close_image" @click="rightImage">
       </div>
     </div>
   </div>
@@ -103,9 +123,35 @@ export default {
         "27.jpg",
         "28.jpg",
       ],
+      carousel:[],
+      image: {
+        visible: false,
+        name: "1.jpg",
+      },
+      actual_image_index: 0,
     };
   },
   methods: {
+    showGallery: function (index, list) {
+      this.carousel = list;
+      this.image.name = list[index];
+      this.image.visible = true;
+    },
+    leftImage: function () {
+      console.log("HOLAA!!")
+      let quantity_images = this.carousel.length;
+      this.actual_image_index = (this.actual_image_index - 1) % quantity_images;
+      this.image.name = this.carousel[this.actual_image_index];
+    },
+    rightImage: function () {
+      console.log(this.carousel);
+      let quantity_images = this.carousel.length;
+      this.actual_image_index = (this.actual_image_index + 1) % quantity_images;
+      this.image.name = this.carousel[this.actual_image_index];
+    },
+    hideGallery: function () {
+      this.image.visible = false;
+    },
     resolve_img_url: function (path) {
       if (path === "") {
         return "";
@@ -174,4 +220,50 @@ img{
   width: 290px;
   margin-left: 15px;
 }
+.background-gallery {
+  z-index: 98;
+  background: rgba(255, 255, 255, 0.9);
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  position: fixed;
+}
+#image {
+  z-index: 100;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#left_image {
+  z-index: 100;
+  position: fixed;
+  top: 50%;
+  left: 3%;
+  width: 43px;
+  height: 42px;
+  background-color: #B1B2B5;
+}
+#right_image {
+  z-index: 100;
+  position: fixed;
+  top: 50%;
+  right: 3%;
+  width: 43px;
+  height: 42px;
+  background-color: #B1B2B5;
+}
+#close_image {
+  z-index: 100;
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  width: 43px;
+  height: 42px;
+  background-color: #B1B2B5;
+}
+
 </style>
