@@ -25,6 +25,7 @@ export default {
         movementX: 0,
         movementY: 0,
       },
+      elementDragged: false
     };
   },
   mounted: function(){
@@ -52,6 +53,7 @@ export default {
     },
     elementDrag: function (event) {
       event.preventDefault();
+      this.elementDragged = true;
       this.positions.movementX = this.positions.clientX - event.clientX;
       this.positions.movementY = this.positions.clientY - event.clientY;
       this.positions.clientX = event.clientX;
@@ -67,8 +69,12 @@ export default {
         "px";
     },
     closeDragElement() {
+      if(!this.elementDragged){
+        this.$emit('click');
+      }
       document.onmouseup = null;
       document.onmousemove = null;
+      this.elementDragged = false;
     },
     resolve_img_url: function (path) {
       let images = require.context(

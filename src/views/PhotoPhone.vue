@@ -81,7 +81,7 @@
       />
       <div id="right_image" @click="rightImage">
       </div>
-      <div id="close_image" @click="rightImage">
+      <div id="close_image" @click="hideGallery">
       </div>
     </div>
   </div>
@@ -222,7 +222,7 @@ img{
 }
 .background-gallery {
   z-index: 98;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgb(255,255,255,0.9);
   height: 100%;
   width: 100%;
   left: 0;

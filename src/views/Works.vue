@@ -13,34 +13,35 @@
           v-bind:alt="work.name"
           v-bind:index_="index"
           v-bind:key="work.index"
-          @click.native="showGallery(index)"
+          @click="showGallery(index)"
         />
       </div>
     </div>
-    <div v-if="image.visible">
+    <div v-if="image.visible" class="gallery">
       <div class="background-gallery" @click="hideGallery" />
-      <img
-        id="left_image"
-        :src="resolve_img_url(left_image)"
-        :alt="image.description"
-        height="300px"
-        @click="leftImage"
-      />
-      <img
-        id="image"
-        :src="resolve_img_url(image.name)"
-        :alt="image.description"
-        height="600px"
-
-        @keyup.left="leftImage"
-      />
-      <img
-        id="right_image"
-        :src="resolve_img_url(right_image)"
-        :alt="image.description"
-        height="300px"
-        @click="rightImage"
-      />
+      <div id="left_image">
+        <img
+          :src="resolve_img_url(left_image)"
+          :alt="image.description"
+          height="300px"
+          @click="leftImage"
+        />
+      </div>
+      <div id="image">
+        <img
+          id="center-image"
+          :src="resolve_img_url(image.name)"
+          :alt="image.description"
+        />
+      </div>
+      <div id="right_image">
+        <img
+          :src="resolve_img_url(right_image)"
+          :alt="image.description"
+          height="300px"
+          @click="rightImage"
+        />
+      </div>
       <div class="gallery-text">{{ image.description }}</div>
     </div>
   </div>
@@ -74,25 +75,29 @@ export default {
         description: "lorem ipsum",
       },
       left_image: "",
-      right_image: "expogabi_1.jpg",
+      right_image: "",
       actual_image_index: 0,
     };
   },
   methods: {
     showGallery: function (index) {
+      console.log(this.carousel[0].name);
       this.image.name = this.works[index].name;
+      this.right_image = this.carousel[0].name;
       this.image.visible = true;
-      this.carousel.push({ name: this.image.name });
+      this.carousel.unshift({ name: this.image.name });
+      console.log(this.carousel[0].name);
     },
     hideGallery: function () {
       this.image.visible = false;
-      this.carousel.splice(this.carousel.length, 1);
+      this.carousel.shift()
+      this.left_image = "";
     },
     leftImage: function () {
       let quantity_images = this.carousel.length;
       this.actual_image_index = (this.actual_image_index - 1) % quantity_images;
 
-      this.image.name = this.carousel[this.actual_image_index];
+      this.image.name = this.carousel[this.actual_image_index].name;
       this.left_image =
         this.carousel[
           (this.actual_image_index + 1 + quantity_images) % quantity_images
@@ -150,9 +155,13 @@ body {
   overflow: hidden;
   position: fixed;
 }
+#center-image{
+  max-height: 600px;
+  max-width: 800px;
+}
 #image {
   z-index: 100;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -160,19 +169,19 @@ body {
 }
 #left_image {
   z-index: 100;
-  position: absolute;
-  left: 20%;
+  position: fixed;
+  left: 70px;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
 }
 #right_image {
   z-index: 100;
-  position: absolute;
-  left: 80%;
+  position: fixed;
+  right: 70px;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
 }
 .gallery-text {
   z-index: 100;
@@ -181,7 +190,7 @@ body {
   font-family: "Paprika", regular, serif;
   bottom: 90px;
   left: 50%;
-  position: absolute;
+  position: fixed;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }

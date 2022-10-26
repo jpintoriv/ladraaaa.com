@@ -13,7 +13,7 @@
           v-bind:alt="work.name"
           v-bind:index_="index"
           v-bind:key="work.index"
-          @click.native="showGallery(index)"
+          @click="showGallery(index)"
         />
       </div>
     </div>
