@@ -11,15 +11,28 @@
       <div id="left-information">
         <img src="@/assets/about/GABI_FOTOBIO.jpg" width="625" alt="" />
         <div id="contact">
-          <a href="mailto:gabriela.claveria@gmail.com">gabriela.claveria@gmail.com</a>
-          <br>
-          <a href="https://www.instagram.com/ladraaaaa">@ladraaaaa</a>
-          <br>
-          <a href="https://www.soundcloud.com/ladraaa">soundcloud/ladraaa</a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="mailto:gabriela.claveria@gmail.com"
+            >gabriela.claveria@gmail.com
+          </a>
+          <br />
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.instagram.com/ladraaaaa"
+            >@ladraaaaa
+          </a>
+          <br />
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.soundcloud.com/ladraaa"
+            >soundcloud/ladraaa
+          </a>
         </div>
-        <div id="info-photo">
-          Foto por Gonzalo Garcés
-        </div>
+        <div id="info-photo">Foto por Gonzalo Garcés</div>
       </div>
 
       <div id="right-information">
