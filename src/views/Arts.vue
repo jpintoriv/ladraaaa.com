@@ -3,7 +3,7 @@
     <div id="works" ref="works">
       <navigator-work
         section="Dirección de Arte"
-        previous_section="Menú"
+        previous_section="Home"
         previous_url="/index"
       />
       <div>
@@ -17,29 +17,31 @@
         />
       </div>
     </div>
-    <div v-if="image.visible">
+    <div v-if="image.visible" class="gallery" >
       <div class="background-gallery" @click="hideGallery" />
-      <img
-        id="top_image"
-        :src="resolve_img_url(top_image)"
-        :alt="image.description"
-        height="300px"
-        @click="leftImage"
-      />
-      <img
-        id="image"
-        :src="resolve_img_url(image.name)"
-        :alt="image.description"
-        height="600px"
-        @keyup.left="leftImage"
-      />
-      <img
-        id="right_image"
-        :src="resolve_img_url(right_image)"
-        :alt="image.description"
-        height="300px"
-        @click="rightImage"
-      />
+      <div id="top_image">
+        <img
+          :src="resolve_img_url(left_image)"
+          :alt="image.description"
+          height="300px"
+          @click="leftImage"
+        />
+      </div>
+      <div id="image" @click.right="console.log('uwu')">
+        <img
+          id="center-image"
+          :src="resolve_img_url(image.name)"
+          :alt="image.description"
+        />
+      </div>
+      <div id="bottom_image">
+        <img
+          :src="resolve_img_url(right_image)"
+          :alt="image.description"
+          height="300px"
+          @click="rightImage"
+        />
+      </div>
       <div class="gallery-text">{{ image.description }}</div>
     </div>
   </div>
@@ -50,7 +52,7 @@ import NavigatorWork from "@/components/NavigatorWork.vue";
 import DraggableDiv from "@/components/DraggableDiv";
 
 export default {
-  name: "Arts",
+  name: "Works",
   components: { NavigatorWork, DraggableDiv },
   data: function () {
     return {
@@ -72,27 +74,29 @@ export default {
         name: "encarnacao.jpg",
         description: "lorem ipsum",
       },
-      top_image: "",
-      right_image: "expogabi_1.jpg",
+      left_image: "",
+      right_image: "",
       actual_image_index: 0,
     };
   },
   methods: {
     showGallery: function (index) {
       this.image.name = this.works[index].name;
+      this.right_image = this.carousel[0].name;
       this.image.visible = true;
-      this.carousel.push({ name: this.image.name });
+      this.carousel.unshift({ name: this.image.name });
     },
     hideGallery: function () {
       this.image.visible = false;
-      this.carousel.splice(this.carousel.length, 1);
+      this.carousel.shift()
+      this.left_image = "";
     },
     leftImage: function () {
       let quantity_images = this.carousel.length;
       this.actual_image_index = (this.actual_image_index - 1) % quantity_images;
 
-      this.image.name = this.carousel[this.actual_image_index];
-      this.top_image =
+      this.image.name = this.carousel[this.actual_image_index].name;
+      this.left_image =
         this.carousel[
           (this.actual_image_index + 1 + quantity_images) % quantity_images
         ].name;
@@ -106,7 +110,7 @@ export default {
       this.actual_image_index = (this.actual_image_index + 1) % quantity_images;
 
       this.image.name = this.carousel[this.actual_image_index].name;
-      this.top_image =
+      this.left_image =
         this.carousel[
           (this.actual_image_index - 1 + quantity_images) % quantity_images
         ].name;
@@ -149,9 +153,13 @@ body {
   overflow: hidden;
   position: fixed;
 }
+#center-image{
+  max-height: 600px;
+  max-width: 800px;
+}
 #image {
   z-index: 100;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -159,19 +167,19 @@ body {
 }
 #top_image {
   z-index: 100;
-  position: absolute;
-  left: 20%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  position: fixed;
+  left: 50%;
+  top: -20%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
-#right_image {
+#bottom_image {
   z-index: 100;
-  position: absolute;
-  left: 80%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  position: fixed;
+  left: 50%;
+  bottom: -20%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 .gallery-text {
   z-index: 100;
@@ -180,7 +188,7 @@ body {
   font-family: "Paprika", regular, serif;
   bottom: 90px;
   left: 50%;
-  position: absolute;
+  position: fixed;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
