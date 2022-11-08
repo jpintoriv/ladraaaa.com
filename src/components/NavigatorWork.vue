@@ -33,11 +33,8 @@ export default {
       let section_ = this.section.toUpperCase().split(' ');
       let section = [];
       for (let val of section_) {
-        console.log(val);
-        console.log(val.split(''));
         section.push(val.split(''));
       }
-      console.log(section);
       return section;
     },
   },

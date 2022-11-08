@@ -80,13 +80,24 @@ export default {
     };
   },
   methods: {
+    keyup: function(event){
+      if(event.key === "ArrowLeft"){
+        if(this.left_image){
+          this.leftImage();
+        }
+        return false;
+      }
+      if(event.key === "ArrowRight"){
+        this.rightImage();
+      }
+      return false;
+    },
     showGallery: function (index) {
-      console.log(this.carousel[0].name);
       this.image.name = this.works[index].name;
       this.right_image = this.carousel[0].name;
       this.image.visible = true;
       this.carousel.unshift({ name: this.image.name });
-      console.log(this.carousel[0].name);
+      window.addEventListener('keyup', this.keyup);
     },
     hideGallery: function () {
       this.image.visible = false;
@@ -95,16 +106,19 @@ export default {
     },
     leftImage: function () {
       let quantity_images = this.carousel.length;
-      this.actual_image_index = (this.actual_image_index - 1) % quantity_images;
-
+      if(this.actual_image_index === 0){
+        this.actual_image_index = quantity_images -1 ;
+      }else{
+        this.actual_image_index = (this.actual_image_index - 1) % quantity_images;
+      }
       this.image.name = this.carousel[this.actual_image_index].name;
       this.left_image =
         this.carousel[
-          (this.actual_image_index + 1 + quantity_images) % quantity_images
+          (this.actual_image_index - 1+ quantity_images) % quantity_images
         ].name;
       this.right_image =
         this.carousel[
-          (this.actual_image_index - 1 + quantity_images) % quantity_images
+          (this.actual_image_index + 1 + quantity_images) % quantity_images
         ].name;
     },
     rightImage: function () {
