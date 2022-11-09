@@ -17,7 +17,7 @@
         />
       </div>
     </div>
-    <div v-if="image.visible" class="gallery" >
+    <div v-if="image.visible" class="gallery">
       <div class="background-gallery" @click="hideGallery" />
       <div id="top_image">
         <img
@@ -80,54 +80,55 @@ export default {
     };
   },
   methods: {
-    keyup: function(event){
+    keyup: function (event) {
       event.preventDefault();
-      if(event.key === "ArrowLeft" || event.key === "ArrowUp"){
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
         event.preventDefault();
-        if(this.left_image){
+        if (this.left_image) {
           this.leftImage();
         }
         return false;
       }
-      if(event.key === "ArrowRight" || event.key === "ArrowDown"){
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
         event.preventDefault();
         this.rightImage();
       }
       return false;
     },
     showGallery: function (index) {
-      this.image.name = this.works[index].name;
-      this.right_image = this.carousel[0].name;
+      this.carousel.unshift({ name: this.works[index].name });
+      this.image.name = this.carousel[0].name;
+      this.right_image = this.carousel[1].name;
+      this.left_image = this.carousel[this.carousel.length - 1].name;
       this.image.visible = true;
-      this.carousel.unshift({ name: this.image.name });
-      window.addEventListener('keyup', this.keyup);
+      window.addEventListener("keyup", this.keyup);
     },
     hideGallery: function () {
       this.image.visible = false;
-      this.carousel.shift()
+      this.carousel.shift();
       this.left_image = "";
     },
     leftImage: function () {
       let quantity_images = this.carousel.length;
-      if(this.actual_image_index == 0){
-        this.actual_image_index = quantity_images -1 ;
-      }else{
-        this.actual_image_index = (this.actual_image_index - 1) % quantity_images;
+      if (this.actual_image_index === 0) {
+        this.actual_image_index = quantity_images - 1;
+      } else {
+        this.actual_image_index =
+          (this.actual_image_index - 1) % quantity_images;
       }
       this.image.name = this.carousel[this.actual_image_index].name;
-      this.left_image =
-        this.carousel[
-          (this.actual_image_index - 1+ quantity_images) % quantity_images
-        ].name;
+      if (this.actual_image_index === 0) {
+        this.left_image = this.carousel[quantity_images - 1].name;
+      } else {
+        this.left_image =
+          this.carousel[(this.actual_image_index - 1) % quantity_images].name;
+      }
       this.right_image =
-        this.carousel[
-          (this.actual_image_index + 1 + quantity_images) % quantity_images
-        ].name;
+        this.carousel[(this.actual_image_index + 1) % quantity_images].name;
     },
     rightImage: function () {
       let quantity_images = this.carousel.length;
       this.actual_image_index = (this.actual_image_index + 1) % quantity_images;
-
       this.image.name = this.carousel[this.actual_image_index].name;
       this.left_image =
         this.carousel[
@@ -172,7 +173,7 @@ body {
   overflow: hidden;
   position: fixed;
 }
-#center-image{
+#center-image {
   max-height: 600px;
   max-width: 800px;
 }
