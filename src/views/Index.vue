@@ -36,6 +36,7 @@
         alt="Random"
         leave_image="random_leave.jpg"
         over_image="random_over.gif"
+        rel="noopener noreferrer"
         url="https://www.soundcloud.com/ladraaa"
       />
     </div>

@@ -1,5 +1,11 @@
 <template>
-  <a :href="url" id="section" @mouseover="overImage" @mouseleave="leaveImage">
+  <a
+    :rel="rel_"
+    :href="url"
+    id="section"
+    @mouseover="overImage"
+    @mouseleave="leaveImage"
+  >
     <img
       :src="resolve_img_url(image_)"
       :alt="alt"
@@ -19,6 +25,7 @@ export default {
     leave_image: String,
     over_image: String,
     url: String,
+    rel_: String,
   },
   data() {
     return {
