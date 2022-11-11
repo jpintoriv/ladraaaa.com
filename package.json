@@ -5,12 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "yarn run build",
+    "start": "yarn server.js"
   },
   "dependencies": {
     "bootstrap": "^5.2.1",
     "core-js": "^3.6.5",
+    "express": "^4.18.2",
     "react-bootstrap": "^2.5.0",
+    "serve-static": "^1.15.0",
     "vue": "^2.6.11",
     "vue-click-outside-element": "^1.0.15",
     "vue-router": "^3.2.0",
