@@ -27,8 +27,9 @@
           <img src="@/assets/photophone/cachorro.gif" width="230" alt="" />
         </div>
       </div>
-      <div class="photos-left">
+      <div class="photos">
         <img
+          class="image-gallery"
           v-for="(item, index) in images_1"
           :src="resolve_img_url(item)"
           height="384px"
@@ -37,8 +38,9 @@
           @click="showGallery(index, images_1)"
         />
       </div>
-      <div class="photos-right">
+      <div class="photos">
         <img
+          class="image-gallery"
           v-for="(item, index) in images_2"
           :src="resolve_img_url(item)"
           height="384px"
@@ -47,42 +49,18 @@
           @click="showGallery(index, images_2)"
         />
       </div>
-      <div class="photos-left">
-        <img
-          v-for="(item, index) in images_3"
-          :src="resolve_img_url(item)"
-          height="384px"
-          alt="index"
-          :key="index"
-          @click="showGallery(index, images_3)"
-        />
-      </div>
-      <div class="photos-right">
-        <img
-          v-for="(item, index) in images_4"
-          :src="resolve_img_url(item)"
-          height="384px"
-          alt="index"
-          :key="index"
-          @click="showGallery(index, images_4)"
-        />
-      </div>
     </div>
     <div v-if="image.visible">
       <div class="background-gallery" @click="hideGallery" />
-      <div id="left_image" @click="leftImage">
-
-      </div>
+      <div id="left_image" @click="leftImage"></div>
       <img
         id="image"
         :src="resolve_img_url(image.name)"
         :alt="image.description"
         height="600px"
       />
-      <div id="right_image" @click="rightImage">
-      </div>
-      <div id="close_image" @click="hideGallery">
-      </div>
+      <div id="right_image" @click="rightImage"></div>
+      <div id="close_image" @click="hideGallery"></div>
     </div>
   </div>
 </template>
@@ -95,8 +73,14 @@ export default {
   components: { NavigatorWork },
   data: function () {
     return {
-      images_1: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],
-      images_2: [
+      images_1: [
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "4.jpg",
+        "5.jpg",
+        "6.jpg",
+        "7.jpg",
         "8.jpg",
         "9.jpg",
         "10.jpg",
@@ -105,7 +89,7 @@ export default {
         "13.jpg",
         "14.jpg",
       ],
-      images_3: [
+      images_2: [
         "15.jpg",
         "16.jpg",
         "17.jpg",
@@ -113,8 +97,6 @@ export default {
         "19.jpg",
         "20.jpg",
         "21.jpg",
-      ],
-      images_4: [
         "22.jpg",
         "23.jpg",
         "24.jpg",
@@ -123,7 +105,7 @@ export default {
         "27.jpg",
         "28.jpg",
       ],
-      carousel:[],
+      carousel: [],
       image: {
         visible: false,
         name: "1.jpg",
@@ -132,13 +114,29 @@ export default {
     };
   },
   methods: {
+    keyup: function (event) {
+      event.preventDefault();
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        if (this.left_image) {
+          this.leftImage();
+        }
+        return false;
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        this.rightImage();
+      }
+      return false;
+    },
     showGallery: function (index, list) {
       this.carousel = list;
       this.image.name = list[index];
       this.image.visible = true;
+      this.actual_image_index = index;
+      window.addEventListener("keyup", this.keyup);
     },
     leftImage: function () {
-      console.log("HOLAA!!")
       let quantity_images = this.carousel.length;
       this.actual_image_index = (this.actual_image_index - 1) % quantity_images;
       this.image.name = this.carousel[this.actual_image_index];
@@ -180,12 +178,10 @@ p {
   color: #03ff00;
   font-family: "Paprika", regular, serif;
 }
-img{
-  margin-bottom: 10px;
-}
+
 .content {
   display: flex;
-  align-items: stretch;
+  justify-content: flex-start;
 }
 
 .information {
@@ -212,17 +208,22 @@ img{
   margin-top: 100px;
 }
 
-.photos-left {
-  width: 290px;
-  margin-left: 70px;
+.photos {
+  width: 620px;
+  max-height: 740px;
+  margin-left: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
 }
-.photos-right {
-  width: 290px;
-  margin-left: 15px;
+.image-gallery {
+  margin-bottom: 10px;
+  margin-right: 15px;
 }
+
 .background-gallery {
   z-index: 98;
-  background: rgb(255,255,255,0.9);
+  background: rgb(255, 255, 255, 0.9);
   height: 100%;
   width: 100%;
   left: 0;
