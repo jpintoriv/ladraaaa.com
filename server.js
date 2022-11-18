@@ -4,7 +4,7 @@ const path = require('path');
 app = express();
 app.route('/*')
     .get(function(req, res) {
-  res.sendFile(path.join(__dirname + "/dist/index.html"));
+  res.serveStatic(path.join(__dirname + "dist"));
 });
 const port = process.env.PORT || 3000;
 app.listen(port);
