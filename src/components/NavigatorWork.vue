@@ -14,8 +14,15 @@
       </div>
     </div>
     <a :href="previous_url">
-      <img src="@/assets/home/gif_menu.gif" height="80" width="80" alt="" />
-      <div class="text text-image">{{ previous_section }}</div>
+      <img
+        src="@/assets/home/gif_menu.gif"
+        @mouseover="activateLetters"
+        @mouseleave="activateLetters"
+        height="80"
+        width="80"
+        alt="" 
+      />
+      <div v-show="seen" class="text text-image">{{ previous_section }}</div>
     </a>
   </div>
 </template>
@@ -28,6 +35,11 @@ export default {
     previous_section: String,
     previous_url: String,
   },
+  data(){
+    return{
+      seen: false,
+    }
+  },
   methods: {
     create_section() {
       let section_ = this.section.toUpperCase().split(' ');
@@ -36,6 +48,9 @@ export default {
         section.push(val.split(''));
       }
       return section;
+    },
+    activateLetters() {
+      this.seen = !this.seen;
     },
   },
 };
