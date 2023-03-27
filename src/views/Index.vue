@@ -1,7 +1,13 @@
 <template>
   <div>
-    <video id="background-video" autoplay loop muted poster="../assets/home/gif_menu.gif">
-      <source src="../assets/index/background.mp4" type="video/mp4">
+    <video
+      id="background-video"
+      autoplay
+      loop
+      muted
+      poster="../assets/home/gif_menu.gif"
+    >
+      <source src="../assets/index/background.mp4" type="video/mp4" />
     </video>
     <div class="sections">
       <SectionImage
@@ -19,7 +25,7 @@
         url="/artdirection"
       />
       <SectionImage
-        text="ABOUT"
+        text="ABOUT + CONTACT"
         alt="About"
         leave_image="about_leave.jpg"
         over_image="about_over.gif"
@@ -52,7 +58,6 @@ export default {
   components: { SectionImage },
 };
 </script>
-
 
 <style>
 .sections {
