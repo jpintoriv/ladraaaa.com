@@ -1,13 +1,22 @@
 <template>
-  <div class="principal" >
+  <div class="principal">
     <img
       class="image"
       v-show="seen"
       alt="Logo Inicial"
       src="../assets/home/gabi.gif"
     />
-    <div @mouseover="activateLetters" @mouseleave="activateLetters" @click="to_index()">
-      <img alt="Logo Inicial" src="../assets/home/gif_menu.gif" width="533px" height="427px" />
+    <div
+      @mouseover="activateLetters"
+      @mouseleave="activateLetters"
+      @click="to_index()"
+    >
+      <img
+        alt="Logo Inicial"
+        src="../assets/home/gif_menu.gif"
+        width="370px"
+        height="380px"
+      />
     </div>
     <img
       class="image"
@@ -49,6 +58,6 @@ export default {
   transform: translate(-50%, -50%);
 }
 .image {
-  max-width: 533px;
+  width: 370px;
 }
 </style>
