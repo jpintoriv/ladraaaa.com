@@ -1,29 +1,33 @@
 <template>
-  <div id="nav">
-    <div>
-      <div class="text text-container">
-        <div
-          class="word"
-          v-for="(word, index) in this.create_section()"
-          v-bind:key="index"
-        >
-          <span v-for="(letter, index_) in word" v-bind:key="index_"
-            >{{ letter }}
-          </span>
+  <div id="container-header">
+    <div id="nav">
+      <div>
+        <div class="text text-container">
+          <div
+            class="word"
+            v-for="(word, index) in this.create_section()"
+            v-bind:key="index"
+          >
+            <span v-for="(letter, index_) in word" v-bind:key="index_"
+              >{{ letter }}
+            </span>
+          </div>
         </div>
       </div>
+      <div id="previous-url">
+        <a :href="previous_url">
+          <img
+            src="@/assets/home/gif_menu.gif"
+            @mouseover="activateLetters"
+            @mouseleave="activateLetters"
+            height="80"
+            width="80"
+            alt="" 
+          />
+          <div v-show="seen" class="text text-image">{{ previous_section }}</div>
+        </a>
+      </div>
     </div>
-    <a :href="previous_url">
-      <img
-        src="@/assets/home/gif_menu.gif"
-        @mouseover="activateLetters"
-        @mouseleave="activateLetters"
-        height="80"
-        width="80"
-        alt="" 
-      />
-      <div v-show="seen" class="text text-image">{{ previous_section }}</div>
-    </a>
   </div>
 </template>
 
@@ -60,8 +64,17 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Paprika&display=swap");
 #nav {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   z-index: 99;
+}
+
+#container-header {
+  position:fixed;
+}
+
+#previous-url {
+  position: fixed;
+  right: 33px;
 }
 
 a {

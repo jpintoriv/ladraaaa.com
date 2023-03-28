@@ -1,18 +1,19 @@
 <template>
-  <div>
+  <div id="navigator-images">
     <div id="works" ref="works">
       <navigator-work
         section="Obra"
         previous_section="Home"
         previous_url="/index"
       />
-      <div>
-        <DraggableDiv
+      <div class="photos">
+        <img
+          class="image-gallery"
           v-for="(work, index) in works"
-          v-bind:image_="work.name"
-          v-bind:alt="work.name"
-          v-bind:index_="index"
-          v-bind:key="work.index"
+          :src="resolve_img_url(work.name)"
+          height="505px"
+          alt="index"
+          :key="work.index"
           @click="showGallery(index)"
         />
       </div>
@@ -49,14 +50,17 @@
 
 <script>
 import NavigatorWork from "@/components/NavigatorWork.vue";
-import DraggableDiv from "@/components/DraggableDiv";
 
 export default {
   name: "Works",
-  components: { NavigatorWork, DraggableDiv },
+  components: { NavigatorWork },
   data: function () {
     return {
       works: [
+        { name: "encarnacao.jpg" },
+        { name: "pendrive.jpg" },
+        { name: "riso.jpg" },
+        { name: "simulacro_obra.jpg" },
         { name: "encarnacao.jpg" },
         { name: "pendrive.jpg" },
         { name: "riso.jpg" },
@@ -140,6 +144,8 @@ export default {
         ].name;
     },
     resolve_img_url: function (path) {
+      console.log("HOlaaa")
+      console.log(path)
       if (path === "") {
         return "";
       }
@@ -158,10 +164,11 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Paprika&display=swap");
 
 body {
-  background-color: #90c0e7;
+  background-color: #ced0d0;
   margin-top: 66px;
   margin-left: 33px;
   margin-right: 33px;
+  overflow-y: scroll;
 }
 .background-gallery {
   z-index: 98;
@@ -211,5 +218,20 @@ body {
   position: fixed;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+.photos {
+  padding-top: 100px;
+  margin-left: 43px;
+  margin-right: 43px;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+}
+.image-gallery {
+  margin-bottom: 10px;
+
+}
+#navigator-images{
+
 }
 </style>
