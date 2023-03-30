@@ -14,8 +14,8 @@
       <img
         alt="Logo Inicial"
         src="../assets/home/gif_menu.gif"
+        height="296px"
         width="370px"
-        height="380px"
       />
     </div>
     <img

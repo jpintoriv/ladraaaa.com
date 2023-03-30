@@ -164,7 +164,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Paprika&display=swap");
 
 body {
-  background-color: #ced0d0;
+  background-color: #fffff;
   margin-top: 66px;
   margin-left: 33px;
   margin-right: 33px;
