@@ -20,8 +20,8 @@
             src="@/assets/home/gif_menu.gif"
             @mouseover="activateLetters"
             @mouseleave="activateLetters"
-            height="80"
-            width="80"
+            height="54"
+            width="54"
             alt="" 
           />
           <div v-show="seen" class="text text-image">{{ previous_section }}</div>
@@ -94,6 +94,7 @@ a {
 }
 
 .word{
+  margin-top: 17px;
   margin-left: 10px;
 }
 
@@ -164,10 +165,10 @@ a {
 }
 
 .text-image {
-  font-size: 18px;
-  width: 80px;
+  font-size: 17px;
+  width: 54px;
   position: relative;
-  top: -58px;
+  top: -42px;
   text-align: center;
 }
 </style>
