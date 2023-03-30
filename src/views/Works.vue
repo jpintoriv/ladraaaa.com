@@ -1,5 +1,5 @@
 <template>
-  <div id="navigator-images">
+  <div>
     <div id="works" ref="works">
       <navigator-work
         section="Obra"
@@ -20,14 +20,6 @@
     </div>
     <div v-if="image.visible" class="gallery">
       <div class="background-gallery" @click="hideGallery" />
-      <div id="left_image">
-        <img
-          :src="resolve_img_url(left_image)"
-          :alt="image.description"
-          height="300px"
-          @click="leftImage"
-        />
-      </div>
       <div id="image">
         <img
           id="center-image"
@@ -35,15 +27,14 @@
           :alt="image.description"
         />
       </div>
-      <div id="right_image">
+      <div class="gallery-text">{{ image.description }}</div>
+      <div id="close_image" @click="hideGallery">
         <img
-          :src="resolve_img_url(right_image)"
-          :alt="image.description"
-          height="300px"
-          @click="rightImage"
+          alt="Cerrar"
+          src="@/assets/gallery/cruz.jpg"
+          height="30px"
         />
       </div>
-      <div class="gallery-text">{{ image.description }}</div>
     </div>
   </div>
 </template>
@@ -172,7 +163,7 @@ body {
 }
 .background-gallery {
   z-index: 98;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 1);
   height: 100%;
   width: 100%;
   left: 0;
@@ -231,7 +222,14 @@ body {
   margin-bottom: 10px;
 
 }
-#navigator-images{
 
+#close_image {
+  z-index: 100;
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  width: 42px;
+  height: 42px;
+  font-size:25px;
 }
 </style>
