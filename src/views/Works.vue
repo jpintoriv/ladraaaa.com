@@ -25,15 +25,15 @@
           id="center-image"
           :src="resolve_img_url(image.name)"
           :alt="image.description"
+          @mousemove="mouseMove"
+          @mouseover="overImage"
+          @mouseleave="leaveImage"
+          @click="clickImage"
         />
       </div>
       <div class="gallery-text">{{ image.description }}</div>
       <div id="close_image" @click="hideGallery">
-        <img
-          alt="Cerrar"
-          src="@/assets/gallery/cruz.jpg"
-          height="30px"
-        />
+        <img alt="Cerrar" src="@/assets/gallery/cruz.jpg" height="30px" />
       </div>
     </div>
   </div>
@@ -72,6 +72,7 @@ export default {
       left_image: "",
       right_image: "",
       actual_image_index: 0,
+      location_cursor: "",
     };
   },
   methods: {
@@ -134,9 +135,32 @@ export default {
           (this.actual_image_index + 1 + quantity_images) % quantity_images
         ].name;
     },
+    overImage: function () {
+      console.log("AAAAA");
+    },
+    leaveImage: function () {
+      document.body.style.cursor = "default";
+      this.location_cursor = "";
+    },
+    mouseMove: function (event) {
+      const middle = window.innerWidth / 2;
+      if (event.pageX < middle) {
+        document.body.style.cursor = "w-resize";
+        this.location_cursor = "left";
+      } else {
+        document.body.style.cursor = "e-resize";
+        this.location_cursor = "right";
+      }
+    },
+    clickImage: function () {
+      if (this.location_cursor === "left") {
+        this.leftImage();
+      } else {
+        this.rightImage();
+      }
+    },
     resolve_img_url: function (path) {
-      console.log("HOlaaa")
-      console.log(path)
+      console.log(path);
       if (path === "") {
         return "";
       }
@@ -155,7 +179,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Paprika&display=swap");
 
 body {
-  background-color: #fffff;
+  background-color: #ffffff;
   margin-top: 66px;
   margin-left: 33px;
   margin-right: 33px;
@@ -171,7 +195,7 @@ body {
   overflow: hidden;
   position: fixed;
 }
-#center-image{
+#center-image {
   max-height: 600px;
   max-width: 800px;
 }
@@ -220,7 +244,6 @@ body {
 }
 .image-gallery {
   margin-bottom: 10px;
-
 }
 
 #close_image {
@@ -228,8 +251,5 @@ body {
   position: fixed;
   top: 3%;
   right: 3%;
-  width: 42px;
-  height: 42px;
-  font-size:25px;
 }
 </style>
