@@ -31,7 +31,12 @@
           @click="clickImage"
         />
       </div>
-      <div class="gallery-text">{{ image.description }}</div>
+      <div class="gallery-info">
+        <div class="gallery-counter">oooo</div>
+        <div class="gallery-text">{{ image.description }}</div>
+        <div class="gallery-info">info</div>
+      </div>
+
       <div id="close_image" @click="hideGallery">
         <img alt="Cerrar" src="@/assets/gallery/cruz.jpg" height="30px" />
       </div>
