@@ -26,12 +26,11 @@
           :src="resolve_img_url(image.name)"
           :alt="image.description"
           @mousemove="mouseMove"
-          @mouseover="overImage"
           @mouseleave="leaveImage"
           @click="clickImage"
         />
       </div>
-      <div class="gallery-info">
+      <div class="gallery-info-container">
         <div class="gallery-counter">oooo</div>
         <div class="gallery-text">{{ image.description }}</div>
         <div class="gallery-info">info</div>
@@ -74,8 +73,6 @@ export default {
         name: "encarnacao.jpg",
         description: "lorem ipsum",
       },
-      left_image: "",
-      right_image: "",
       actual_image_index: 0,
       location_cursor: "",
     };
@@ -85,9 +82,7 @@ export default {
       event.preventDefault();
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-        if (this.left_image) {
-          this.leftImage();
-        }
+        this.leftImage();
         return false;
       }
       if (event.key === "ArrowRight") {
@@ -99,49 +94,30 @@ export default {
     showGallery: function (index) {
       this.carousel.unshift({ name: this.works[index].name });
       this.image.name = this.carousel[0].name;
-      this.right_image = this.carousel[1].name;
-      this.left_image = this.carousel[this.carousel.length - 1].name;
       this.image.visible = true;
       window.addEventListener("keyup", this.keyup);
     },
     hideGallery: function () {
       this.image.visible = false;
       this.carousel.shift();
-      this.left_image = "";
     },
     leftImage: function () {
       let quantity_images = this.carousel.length;
       if (this.actual_image_index === 0) {
         this.actual_image_index = quantity_images - 1;
       } else {
-        this.actual_image_index =
-          (this.actual_image_index - 1) % quantity_images;
+        this.actual_image_index = this.actual_image_index - 1;
       }
       this.image.name = this.carousel[this.actual_image_index].name;
-      if (this.actual_image_index === 0) {
-        this.left_image = this.carousel[quantity_images - 1].name;
-      } else {
-        this.left_image =
-          this.carousel[(this.actual_image_index - 1) % quantity_images].name;
-      }
-      this.right_image =
-        this.carousel[(this.actual_image_index + 1) % quantity_images].name;
     },
     rightImage: function () {
       let quantity_images = this.carousel.length;
-      this.actual_image_index = (this.actual_image_index + 1) % quantity_images;
+      if (this.actual_image_index === quantity_images - 1) {
+        this.actual_image_index = 0;
+      } else {
+        this.actual_image_index = this.actual_image_index + 1;
+      }
       this.image.name = this.carousel[this.actual_image_index].name;
-      this.left_image =
-        this.carousel[
-          (this.actual_image_index - 1 + quantity_images) % quantity_images
-        ].name;
-      this.right_image =
-        this.carousel[
-          (this.actual_image_index + 1 + quantity_images) % quantity_images
-        ].name;
-    },
-    overImage: function () {
-      console.log("AAAAA");
     },
     leaveImage: function () {
       document.body.style.cursor = "default";
@@ -165,7 +141,6 @@ export default {
       }
     },
     resolve_img_url: function (path) {
-      console.log(path);
       if (path === "") {
         return "";
       }
@@ -191,7 +166,6 @@ body {
   overflow-y: scroll;
 }
 .background-gallery {
-  z-index: 98;
   background: rgba(255, 255, 255, 1);
   height: 100%;
   width: 100%;
@@ -201,8 +175,7 @@ body {
   position: fixed;
 }
 #center-image {
-  max-height: 600px;
-  max-width: 800px;
+  max-height: 640px;
 }
 #image {
   z-index: 100;
@@ -212,33 +185,28 @@ body {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-#left_image {
-  z-index: 100;
-  position: fixed;
-  left: 70px;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-}
-#right_image {
-  z-index: 100;
-  position: fixed;
-  right: 70px;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-}
 .gallery-text {
   z-index: 100;
   color: #03ff00;
-  font-size: 12px;
+  font-size: 20px;
+  font-family: "Paprika", regular, serif;
+}
+
+.gallery-info-container {
+  z-index: 100;
+  color: #03ff00;
+  font-size: 17px;
   font-family: "Paprika", regular, serif;
   bottom: 90px;
   left: 50%;
   position: fixed;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
 }
+
 .photos {
   padding-top: 100px;
   margin-left: 43px;
