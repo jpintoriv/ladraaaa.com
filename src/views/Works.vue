@@ -82,7 +82,7 @@ export default {
         title: "Text",
         description:
           "021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán," +
-          " Lisboa 2021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
+          "Lisboa 2021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
           "Lisboa 2021 Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
           "Lisboa 2021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
           "Lisboa 2021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
@@ -116,6 +116,7 @@ export default {
     },
     hideGallery: function () {
       this.image.visible = false;
+      this.show_description = false;
       this.carousel.shift();
     },
     leftImage: function () {
