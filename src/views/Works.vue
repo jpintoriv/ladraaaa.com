@@ -32,8 +32,16 @@
       </div>
       <div class="gallery-info-container">
         <div class="gallery-counter">oooo</div>
-        <div class="gallery-text">{{ image.description }}</div>
-        <div class="gallery-info">info</div>
+        <div class="gallery-text">{{ image.title }}</div>
+        <div class="gallery-info" @click="showDescription">
+          <a href="#">info</a>
+        </div>
+      </div>
+      <div class="gallery-description" v-show="show_description">
+        <div id="close-description" @click="closeDescription">X</div>
+        <div class="text-description">
+          {{ image.description }}
+        </div>
       </div>
 
       <div id="close_image" @click="hideGallery">
@@ -71,10 +79,19 @@ export default {
       image: {
         visible: false,
         name: "encarnacao.jpg",
-        description: "lorem ipsum",
+        title: "Text",
+        description:
+          "021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán," +
+          " Lisboa 2021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
+          "Lisboa 2021 Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
+          "Lisboa 2021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
+          "Lisboa 2021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
+          "Lisboa 2021Encarnaçao Aquosa. Zaratán, Lisboa 2021Encarnaçao Aquosa. Zaratán, " +
+          "Lisboa 2021 Encarnaçao ",
       },
       actual_image_index: 0,
       location_cursor: "",
+      show_description: false,
     };
   },
   methods: {
@@ -140,6 +157,12 @@ export default {
         this.rightImage();
       }
     },
+    showDescription: function () {
+      this.show_description = true;
+    },
+    closeDescription: function () {
+      this.show_description = false;
+    },
     resolve_img_url: function (path) {
       if (path === "") {
         return "";
@@ -165,6 +188,9 @@ body {
   margin-right: 33px;
   overflow-y: scroll;
 }
+a {
+  color: #03ff00;
+}
 .background-gallery {
   background: rgba(255, 255, 255, 1);
   height: 100%;
@@ -178,7 +204,7 @@ body {
   max-height: 640px;
 }
 #image {
-  z-index: 100;
+  z-index: 99;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -186,10 +212,27 @@ body {
   transform: translate(-50%, -50%);
 }
 .gallery-text {
-  z-index: 100;
+  z-index: 99;
   color: #03ff00;
-  font-size: 20px;
+  font-size: 18px;
   font-family: "Paprika", regular, serif;
+}
+
+.gallery-info {
+  font-size: 18px;
+}
+
+.gallery-description {
+  z-index: 99;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-family: "Paprika", regular, serif;
+  color: black;
+  width: 1100px;
 }
 
 .gallery-info-container {
