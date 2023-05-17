@@ -19,32 +19,44 @@
       </div>
     </div>
     <div v-if="image.visible" class="gallery">
-      <div class="background-gallery" @click="hideGallery" />
+      <div class="background-gallery" @mousemove="mouseMove"  @click="clickImage" />
       <div id="image">
         <img
           id="center-image"
           :src="resolve_img_url(image.name)"
           :alt="image.description"
           @mousemove="mouseMove"
-          @mouseleave="leaveImage"
           @click="clickImage"
         />
       </div>
       <div class="gallery-info-container">
-        <div class="gallery-counter">oooo</div>
+        <div class="gallery-counter">
+          <img
+            v-for="i in quantity_images"
+            :src="getCircle(i)"
+            :key="i"
+            height="17px"
+            alt=""
+          />
+        </div>
         <div class="gallery-text">{{ image.title }}</div>
         <div class="gallery-info" @click="showDescription">
           <a href="#">info</a>
         </div>
       </div>
       <div class="gallery-description" v-show="show_description">
-        <div id="close-description" @click="closeDescription">X</div>
+        <div id="close-description" @click="closeDescription">
+          <img
+            alt="Cerrar"
+            src="@/assets/gallery/cruz_info.png"
+            height="30px"
+          />
+        </div>
         <div class="text-description">
           {{ image.description }}
         </div>
       </div>
-
-      <div id="close_image" @click="hideGallery">
+      <div id="close_image" @click="hideGallery" @mousemove="restoreMouse">
         <img alt="Cerrar" src="@/assets/gallery/cruz.jpg" height="30px" />
       </div>
     </div>
@@ -90,6 +102,7 @@ export default {
           "Lisboa 2021 Encarnaçao ",
       },
       actual_image_index: 0,
+      quantity_images: 0,
       location_cursor: "",
       show_description: false,
     };
@@ -111,6 +124,7 @@ export default {
     showGallery: function (index) {
       this.carousel.unshift({ name: this.works[index].name });
       this.image.name = this.carousel[0].name;
+      this.quantity_images = this.carousel.length;
       this.image.visible = true;
       window.addEventListener("keyup", this.keyup);
     },
@@ -118,6 +132,7 @@ export default {
       this.image.visible = false;
       this.show_description = false;
       this.carousel.shift();
+      this.restoreMouse();
     },
     leftImage: function () {
       let quantity_images = this.carousel.length;
@@ -137,7 +152,7 @@ export default {
       }
       this.image.name = this.carousel[this.actual_image_index].name;
     },
-    leaveImage: function () {
+    restoreMouse: function () {
       document.body.style.cursor = "default";
       this.location_cursor = "";
     },
@@ -163,6 +178,19 @@ export default {
     },
     closeDescription: function () {
       this.show_description = false;
+    },
+    getCircle: function (i) {
+      i = i - 1;
+      let images = require.context(
+        "../assets/gallery/",
+        false,
+        /\.png$|\.jpg$|\.gif/
+      );
+      if (i === this.actual_image_index) {
+        return images(`./${"circulo_relleno.png"}`);
+      } else {
+        return images(`./${"circulo.png"}`);
+      }
     },
     resolve_img_url: function (path) {
       if (path === "") {
@@ -233,7 +261,8 @@ a {
   font-size: 24px;
   font-family: "Paprika", regular, serif;
   color: black;
-  width: 1100px;
+  width: 1050px;
+  text-align: justify;
 }
 
 .gallery-info-container {
@@ -260,7 +289,7 @@ a {
   flex-wrap: wrap;
 }
 .image-gallery {
-  margin-bottom: 10px;
+  margin-bottom: 90px;
 }
 
 #close_image {
@@ -268,5 +297,14 @@ a {
   position: fixed;
   top: 3%;
   right: 3%;
+}
+
+#close-description {
+  text-align: start;
+}
+
+.gallery-counter{
+  align-self: center;
+  margin-top: 3px;
 }
 </style>
