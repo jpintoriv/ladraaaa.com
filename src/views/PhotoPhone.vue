@@ -51,16 +51,18 @@
       </div>
     </div>
     <div v-if="image.visible">
-      <div class="background-gallery" @click="hideGallery" />
-      <div id="left_image" @click="leftImage"></div>
+      <div class="background-gallery" @mousemove="mouseMove" @click="clickImage" />
       <img
         id="image"
         :src="resolve_img_url(image.name)"
         :alt="image.description"
         height="600px"
+        @mousemove="mouseMove"
+        @click="clickImage"
       />
-      <div id="right_image" @click="rightImage"></div>
-      <div id="close_image" @click="hideGallery"></div>
+      <div id="close_image" @click="hideGallery" @mousemove="restoreMouse">
+        <img alt="Cerrar" src="@/assets/gallery/cruz_info.png" height="30px" />
+      </div>
     </div>
   </div>
 </template>
@@ -110,6 +112,7 @@ export default {
         visible: false,
         name: "1.jpg",
       },
+      location_cursor: "",
       actual_image_index: 0,
     };
   },
@@ -149,6 +152,27 @@ export default {
     },
     hideGallery: function () {
       this.image.visible = false;
+    },
+    clickImage: function () {
+      if (this.location_cursor === "left") {
+        this.leftImage();
+      } else {
+        this.rightImage();
+      }
+    },
+    restoreMouse: function () {
+      document.body.style.cursor = "default";
+      this.location_cursor = "";
+    },
+    mouseMove: function (event) {
+      const middle = window.innerWidth / 2;
+      if (event.pageX < middle) {
+        document.body.style.cursor = "w-resize";
+        this.location_cursor = "left";
+      } else {
+        document.body.style.cursor = "e-resize";
+        this.location_cursor = "right";
+      }
     },
     resolve_img_url: function (path) {
       if (path === "") {
@@ -223,7 +247,7 @@ p {
 
 .background-gallery {
   z-index: 98;
-  background: rgb(255, 255, 255, 0.9);
+  background: rgb(37, 35, 35, 0.8);
   height: 100%;
   width: 100%;
   left: 0;
@@ -262,9 +286,5 @@ p {
   position: fixed;
   top: 3%;
   right: 3%;
-  width: 43px;
-  height: 42px;
-  background-color: #B1B2B5;
 }
-
 </style>
