@@ -15,7 +15,7 @@
           alt="index"
           :key="work.index"
           @click="showGallery(index)"
-        />
+        />gallery
       </div>
     </div>
     <div v-if="image.visible" class="gallery">
