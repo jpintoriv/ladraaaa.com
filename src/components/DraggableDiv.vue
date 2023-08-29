@@ -4,7 +4,8 @@
       @mousedown="dragMouseDown"
       :src="resolve_img_url(image_)"
       :alt="alt"
-      width="500px"
+      width="420px"
+      id="draggable-img"
     />
   </div>
 </template>
@@ -78,7 +79,7 @@ export default {
     },
     resolve_img_url: function (path) {
       let images = require.context(
-        "../assets/works/",
+        "../assets/about/",
         false,
         /\.png$|\.jpg$|\.gif/
       );
@@ -92,5 +93,21 @@ export default {
 #draggable-container {
   position: absolute;
   z-index: 9;
+  left: 900px;
+  top: 400px;
+}
+#draggable-img {
+  border: 4px solid #02ff00;
+}
+#draggable-container:hover {
+  animation: shake-draggable-container .1s infinite alternate;
+  cursor: move;
+}
+
+@keyframes shake-draggable-container {
+  0% { transform: translate(-2px, 2px); }
+  33% { transform: translate(-2px, 4px); }
+  66% { transform: translate(-4px, 4px); }
+  100% { transform: translate(-4px, 2px); }
 }
 </style>

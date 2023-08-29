@@ -35,6 +35,11 @@
         </div>
       </div>
     </div>
+    <DraggableDiv
+      alt="alt"
+      image_="GABI_FOTOBIO.jpg"
+      @index_="1"
+    />
     <div class="content">
       <div id="left-information">
         <p class="p-text">
@@ -76,10 +81,11 @@
 
 <script>
 import NavigatorWork from "@/components/NavigatorWork.vue";
+import DraggableDiv from "../components/DraggableDiv.vue";
 
 export default {
   name: "PhotoPhone",
-  components: { NavigatorWork },
+  components: { NavigatorWork, DraggableDiv },
   data: function () {
   },
   methods: {
@@ -133,7 +139,7 @@ a {
   margin-left: 80px;
 }
 
-.contact{
+.contact {
   color: #03ff00;
   font-size: 18px;
   display: flex;
@@ -142,12 +148,12 @@ a {
   margin-right: 200px;
 }
 
-.contact-item{
+.contact-item {
   font-size: 24px;
   font-family: "Paprika", regular, serif;
 }
 
-#info-photo{
+#info-photo {
   margin-top: 20px;
   width: 625px;
   color: #03ff00;
@@ -163,24 +169,24 @@ a {
   margin-left: 70px;
 }
 
-#language-text{
+#language-text {
   color: #03ff00;
   margin-bottom: 35px;
   font-size: 17px;
   font-family: "Paprika", regular, serif;
 }
-#section-text{
+#section-text {
   color: #03ff00;
   font-size: 17px;
   font-family: "Paprika", regular, serif;
 }
 
-.title-text{
+.title-text {
   color: #03ff00;
   font-size: 20px;
 }
 
-.p-text{
+.p-text {
   font-size: 30px;
   text-align: left;
   margin-bottom: 13px;
