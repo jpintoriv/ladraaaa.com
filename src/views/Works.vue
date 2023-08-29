@@ -19,7 +19,11 @@
       </div>
     </div>
     <div v-if="image.visible" class="gallery">
-      <div class="background-gallery" @mousemove="mouseMove"  @click="clickImage" />
+      <div
+        class="background-gallery"
+        @mousemove="mouseMove"
+        @click="clickImage"
+      />
       <div id="image">
         <img
           id="center-image"
@@ -303,7 +307,7 @@ a {
   text-align: start;
 }
 
-.gallery-counter{
+.gallery-counter {
   align-self: center;
   margin-top: 3px;
 }
