@@ -233,7 +233,7 @@ p {
 }
 
 .photos {
-  width: 620px;
+  width: 625px;
   max-height: 740px;
   margin-left: 60px;
   display: flex;
