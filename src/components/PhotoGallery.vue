@@ -111,7 +111,6 @@ export default {
     }
   },
   resolve_img_url: function (path) {
-    console.log(path);
     if (path === "") {
       return "";
     }

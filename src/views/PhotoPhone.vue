@@ -145,7 +145,6 @@ export default {
       this.image.name = this.carousel[this.actual_image_index];
     },
     rightImage: function () {
-      console.log(this.carousel);
       let quantity_images = this.carousel.length;
       this.actual_image_index = (this.actual_image_index + 1) % quantity_images;
       this.image.name = this.carousel[this.actual_image_index];
