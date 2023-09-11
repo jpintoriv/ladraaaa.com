@@ -27,6 +27,7 @@
           <img src="@/assets/photophone/cachorro.gif" width="230" alt="" />
         </div>
       </div>
+      <div class="container-photo"> 
       <div class="photos">
         <img
           class="image-gallery"
@@ -38,6 +39,7 @@
           @click="showGallery(index, images_1)"
         />
       </div>
+      </div>  
       <div class="photos">
         <img
           class="image-gallery"
@@ -233,7 +235,7 @@ p {
 
 .photos {
   width: 625px;
-  max-height: 740px;
+  max-height: 1000px;
   margin-left: 60px;
   display: flex;
   flex-wrap: wrap;
