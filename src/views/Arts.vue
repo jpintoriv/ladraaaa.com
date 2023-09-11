@@ -159,10 +159,10 @@ export default {
     mouseMove: function (event) {
       const middle = window.innerWidth / 2;
       if (event.pageX < middle) {
-        document.body.style.cursor = "w-resize";
+        document.body.style.cursor = 'url('+this.resolve_img_url("cursor-izq.png")+'), pointer';
         this.location_cursor = "left";
       } else {
-        document.body.style.cursor = "e-resize";
+        document.body.style.cursor ='url('+this.resolve_img_url("cursor-der.png")+'), pointer';
         this.location_cursor = "right";
       }
     },
